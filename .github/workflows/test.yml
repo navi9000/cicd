@@ -1,4 +1,5 @@
 name: Test
+run-name: ${{ github.actor }} is testing out Github Actions
 
 on:
   pull_request:
@@ -6,6 +7,18 @@ on:
       - master
 
 jobs:
+  explore-gh-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: View event
+        run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: View operating system
+        run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - name: View repository info
+        run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: List files
+        run: |
+          ls ${{ github.workspace }}
   test:
     runs-on: ubuntu-latest
     container:
